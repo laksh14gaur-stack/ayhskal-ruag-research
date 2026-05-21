@@ -3,361 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Public Policy & Legislative Tracker</title>
+    <title>Ayhskal Ruag Policy Research | Legislative & Intelligence Stream</title>
     <style>
         :root {
-            --primary-color: #0f172a;
-            --secondary-color: #2563eb;
-            --bg-light: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-main: #334155;
-            --text-dark: #0f172a;
-            --meity-color: #0284c7;
-            --dst-color: #7c3aed;
-            --generic-ministry: #475569;
+            --brand-primary: #0b1329;
+            --brand-surface: #1c2541;
+            --brand-accent: #3a86ff;
+            --brand-accent-glow: rgba(58, 134, 255, 0.15);
+            --bg-canvas: #f4f7fc;
+            --card-surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            
+            /* Status Accents */
+            --color-meity: #0ea5e9;
+            --color-dst: #8b5cf6;
+            --color-generic: #64748b;
+            --status-published: #10b981;
+            --status-active: #3a86ff;
+            --status-pending: #f59e0b;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.6;
+            background-color: var(--bg-canvas);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
+        /* State of the Art Premium Header */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-surface) 100%);
             color: white;
-            padding: 2rem 5%;
-            border-bottom: 4px solid var(--secondary-color);
+            padding: 4.5rem 2rem 5rem 2rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(11, 19, 41, 0.15);
         }
 
-        .header-container {
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-accent), var(--color-meity), var(--color-dst));
+        }
+
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-tagline {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            color: var(--brand-accent);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
         }
 
         header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
         }
 
         header p {
             color: #94a3b8;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            max-width: 700px;
+            font-weight: 400;
         }
 
-        nav {
-            background-color: white;
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
+        /* Metric Dashboard Strip */
+        .metrics-strip {
             max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-box {
+            margin: -2.5rem auto 0 auto;
+            padding: 0 1.5rem;
             position: relative;
-            flex: 1;
-            max-width: 400px;
+            z-index: 10;
         }
 
-        .search-box input {
-            width: 100%;
-            padding: 0.6rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
+        .metrics-container {
+            background: var(--card-surface);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        .search-box input:focus {
-            border-color: var(--secondary-color);
-        }
-
-        .filter-group {
+        .metric-item {
             display: flex;
-            gap: 0.5rem;
+            flex-direction: column;
+            border-right: 1px solid #e2e8f0;
         }
 
-        .filter-btn {
-            background-color: #f1f5f9;
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .metric-item:last-child {
+            border-right: none;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
             font-weight: 500;
-            color: var(--text-main);
-            transition: all 0.2s;
+            margin-top: 0.25rem;
         }
 
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--secondary-color);
-            color: white;
-            border-color: var(--secondary-color);
-        }
-
-        main {
+        /* Interface Controller (Search & Dynamic System Tabs) */
+        .interface-controller {
             max-width: 1200px;
-            margin: 2.5rem auto;
+            margin: 3.5rem auto 1.5rem auto;
             padding: 0 1.5rem;
         }
 
-        .dashboard-grid {
+        .control-bar {
+            background: white;
+            border-radius: 14px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        @media(min-width: 768px) {
+            .control-bar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        /* Organized Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.25rem;
+        }
+
+        @media(min-width: 768px) {
+            .nav-tabs {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--brand-primary);
+            background: #f8fafc;
+        }
+
+        .tab-btn.active {
+            color: var(--brand-accent);
+            background: var(--brand-accent-glow);
+        }
+
+        /* Search Engine input styling */
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border: 1px solid #d8e2ef;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #f8fafc;
+            transition: all 0.25s;
+        }
+
+        .search-wrapper input:focus {
+            background-color: white;
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 4px var(--brand-accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* Core Content Output Layout */
+        main {
+            max-width: 1200px;
+            margin: 0 auto 6rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .content-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
 
-        .bill-card {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+        /* High-Fidelity Interactive Data Cards */
+        .data-card {
+            background: var(--card-surface);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .bill-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        .data-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -4px rgba(11, 19, 41, 0.06);
+            border-color: #cbd5e1;
         }
 
-        .bill-header {
+        .card-topframe {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
-        .ministry-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
+        .source-tag {
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
             color: white;
         }
 
-        .tag-meity { background-color: var(--meity-color); }
-        .tag-dst { background-color: var(--dst-color); }
-        .tag-generic { background-color: var(--generic-ministry); }
+        .src-meity { background-color: var(--color-meity); }
+        .src-dst { background-color: var(--color-dst); }
+        .src-generic { background-color: var(--color-generic); }
 
-        .status-badge {
+        .status-pill {
             font-size: 0.8rem;
             font-weight: 600;
             padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
-        .badge-active { background-color: #e0f2fe; color: #0369a1; }
-        .badge-approved { background-color: #dcfce7; color: #15803d; }
-        .badge-published { background-color: #f0fdf4; color: #166534; }
-        .badge-pending { background-color: #fef3c7; color: #b45309; }
+        .status-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
 
-        .bill-title {
-            color: var(--text-dark);
-            font-size: 1.3rem;
+        .st-published { background-color: #ecfdf5; color: #065f46; }
+        .st-published::before { background-color: var(--status-published); }
+        .st-active { background-color: #eff6ff; color: #1e40af; }
+        .st-active::before { background-color: var(--status-active); }
+        .st-approved { background-color: #f0fdf4; color: #166534; }
+        .st-approved::before { background-color: #22c55e; }
+
+        .card-title {
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            color: var(--brand-primary);
+            line-height: 1.3;
+            margin-bottom: 0.85rem;
         }
 
-        .bill-summary {
-            color: var(--text-main);
-            font-size: 0.98rem;
-            margin-bottom: 1.25rem;
+        .card-abstract {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+            flex-grow: 1;
         }
 
-        .bill-footer {
+        .card-bottomframe {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1.25rem;
             font-size: 0.85rem;
-            color: #64748b;
+            color: var(--text-muted);
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
-        .view-brief-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--secondary-color);
+        .metadata-unit {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+        }
+
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--brand-accent);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        .view-brief-btn:hover {
-            text-decoration: underline;
+        .action-link:hover {
+            color: var(--brand-surface);
         }
 
-        .error-text {
-            text-align: center;
-            padding: 3rem;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        /* State of the art file view layout fallback row */
+        .file-row-layout {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            transition: background-color 0.2s;
+        }
+
+        .file-row-layout:hover {
+            background-color: #f8fafc;
+        }
+
+        .file-info-cluster {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
             color: #94a3b8;
+        }
+
+        .file-name-meta h4 {
+            font-size: 1rem;
+            color: var(--brand-primary);
+            font-weight: 600;
+        }
+
+        .file-name-meta p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Standard Feedback Placeholders */
+        .empty-notice {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: white;
+            border-radius: 14px;
+            border: 1px dashed #cbd5e1;
+            color: var(--text-muted);
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            color: #64748b;
+            padding: 3rem 2rem;
+            background: var(--brand-primary);
+            color: #94a3b8;
             font-size: 0.9rem;
-            margin-top: 5rem;
-            border-top: 1px solid var(--border-color);
-            background: white;
+            border-top: 1px solid #1e293b;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-container">
-            <h1>India Legislative & Public Policy Tracker</h1>
-            <p>Automated tracking of central ministries, regulatory updates, and gazette notifications</p>
+        <div class="header-content">
+            <div class="header-tagline">Intelligence & Strategy Portal</div>
+            <h1>Ayhskal Ruag Policy Research</h1>
+            <p>State-of-the-art framework tracking real-time central regulatory shifts, gazette indices, and digital policy metrics.</p>
         </div>
     </header>
 
-    <nav>
-        <div class="nav-container">
-            <div class="search-box">
-                <input type="text" id="policySearch" placeholder="Search bills, notifications, or topics...">
+    <div class="metrics-strip">
+        <div class="metrics-container">
+            <div class="metric-item">
+                <span class="metric-value" id="count-total">--</span>
+                <span class="metric-label">Monitored Vectors</span>
             </div>
-            <div class="filter-group">
-                <button class="filter-btn active" onclick="filterMinistry('all', this)">All Sources</button>
-                <button class="filter-btn" onclick="filterMinistry('meity', this)">Electronics & IT</button>
-                <button class="filter-btn" onclick="filterMinistry('dst', this)">Science & Tech</button>
+            <div class="metric-item">
+                <span class="metric-value" id="count-meity">--</span>
+                <span class="metric-label">MeitY Tracks</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value" id="count-dst">--</span>
+                <span class="metric-label">Sci & Tech Clearances</span>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <div class="interface-controller">
+        <div class="control-bar">
+            <div class="nav-tabs">
+                <button class="tab-btn active" id="tab-all" onclick="switchSystemTab('all')">All Stream Tracks</button>
+                <button class="tab-btn" id="tab-meity" onclick="switchSystemTab('meity')">MeitY Files</button>
+                <button class="tab-btn" id="tab-dst" onclick="switchSystemTab('dst')">Science & Tech</button>
+                <button class="tab-btn" id="tab-locker" onclick="switchSystemTab('locker')">📁 Document Vault</button>
+            </div>
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="liveFilterField" placeholder="Filter active matrix records...">
+            </div>
+        </div>
+    </div>
 
     <main>
-        <div class="dashboard-grid" id="bills-container">
+        <div class="content-grid" id="masterRenderPlatform">
             </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Public Policy Archive Dashboard. Connected directly to Cloud Automation Streams.</p>
+        <p>&copy; 2026 Ayhskal Ruag Policy Research. Connected seamlessly to real-time micro-scraper modules.</p>
     </footer>
 
     <script>
-        let allBills = []; // Cache dataset for filtering and real-time search
+        let cachedDataset = []; 
+        let activeFilterTab = 'all';
 
-        async function loadLiveBills() {
-            const container = document.getElementById('bills-container');
-            
+        async function initializePlatformPipeline() {
+            const container = document.getElementById('masterRenderPlatform');
             try {
-                // Fetch the pipeline data file updated by your cloud actions
-                const response = await fetch('./bills.json');
-                allBills = await response.json();
+                // Fetch live stream JSON updated automatically by your GitHub robot
+                const networkResponse = await fetch('./bills.json');
+                cachedDataset = await networkResponse.json();
                 
-                renderCards(allBills);
+                calculateSummaryMetrics(cachedDataset);
+                executeContentRendering();
                 
-            } catch (error) {
-                console.error("Error loading automated policy stream:", error);
+            } catch (networkError) {
+                console.error("Critical stream pipeline interruption:", networkError);
                 container.innerHTML = `
-                    <div class="error-text">
-                        <h3>Temporary Pipeline Synchronization Notice</h3>
-                        <p>The legislative database is performing an automatic refresh or parsing cycle. Please check back in a few moments.</p>
+                    <div class="empty-notice">
+                        <h3>Pipeline Handshake Delayed</h3>
+                        <p>The system is currently compiling structural data segments. Check back in a brief moment.</p>
                     </div>`;
             }
         }
 
-        function renderCards(dataset) {
-            const container = document.getElementById('bills-container');
+        function calculateSummaryMetrics(data) {
+            document.getElementById('count-total').innerText = data.length;
+            document.getElementById('count-meity').innerText = data.filter(b => b.ministry_slug === 'meity').length;
+            document.getElementById('count-dst').innerText = data.filter(b => b.ministry_slug === 'dst').length;
+        }
+
+        function executeContentRendering(filteredSubset = null) {
+            const container = document.getElementById('masterRenderPlatform');
             container.innerHTML = '';
             
-            if (dataset.length === 0) {
-                container.innerHTML = '<div class="error-text"><p>No items match your active filter criteria.</p></div>';
+            // Determine working dataset base
+            let workingSet = filteredSubset || cachedDataset;
+
+            // Apply Tab Filtration Logic
+            if (activeFilterTab !== 'all' && activeFilterTab !== 'locker' && !filteredSubset) {
+                workingSet = workingSet.filter(b => b.ministry_slug === activeFilterTab);
+            }
+
+            // Document Vault View Layout Rendering Override
+            if (activeFilterTab === 'locker') {
+                renderDocumentVaultLayout(container, workingSet);
                 return;
             }
-            
-            dataset.forEach(bill => {
+
+            if (workingSet.length === 0) {
+                container.innerHTML = '<div class="empty-notice"><h3>No records match active query filter criteria.</h3></div>';
+                return;
+            }
+
+            // Normal Feed Card Component Rendering Loop
+            workingSet.forEach(policyItem => {
                 const card = document.createElement('div');
-                card.className = 'bill-card';
+                card.className = 'data-card';
                 
-                // Safety guard for ministry formatting
-                const currentSlug = bill.ministry_slug || 'generic';
+                const slugClass = policyItem.ministry_slug || 'generic';
+                const lowerStatus = (policyItem.status || 'published').toLowerCase();
                 
                 card.innerHTML = `
-                    <div class="bill-header">
-                        <span class="ministry-tag tag-${currentSlug}">${bill.ministry}</span>
-                        <span class="status-badge badge-${bill.status.toLowerCase()}">${bill.status_label}</span>
+                    <div class="card-topframe">
+                        <span class="source-tag src-${slugClass}">${policyItem.ministry}</span>
+                        <span class="status-pill st-${lowerStatus}">${policyItem.status_label}</span>
                     </div>
-                    <h3 class="bill-title">${bill.title}</h3>
-                    <p class="bill-summary">${bill.summary}</p>
-                    <div class="bill-footer">
-                        <span>📅 Date: ${bill.date}</span>
-                        <span>ID: ${bill.bill_number}</span>
+                    <h3 class="card-title">${policyItem.title}</h3>
+                    <p class="card-abstract">${policyItem.summary}</p>
+                    <div class="card-bottomframe">
+                        <div class="metadata-unit">📅 Index Metric: ${policyItem.date}</div>
+                        <div class="metadata-unit">ID: ${policyItem.bill_number}</div>
                     </div>
-                    <a href="brief.html?id=${bill.bill_number}" class="view-brief-btn">View Analysis Brief →</a>
+                    <a href="brief.html?id=${policyItem.bill_number}" class="action-link" style="margin-top:1.25rem;">Explore Analysis Brief &rarr;</a>
                 `;
                 container.appendChild(card);
             });
         }
 
-        // Live Filtering Logic
-        function filterMinistry(slug, element) {
-            // Manage UI Button State
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+        function renderDocumentVaultLayout(container, dataset) {
+            container.innerHTML = `
+                <div style="margin-bottom:1rem;"><h3 style="color:var(--brand-primary)">Central Shared Files Repository</h3><p style="color:var(--text-muted); font-size:0.9rem;">Access raw tracking parameters and script schemas.</p></div>
+            `;
             
-            // Reset search input value when using categories
-            document.getElementById('policySearch').value = '';
+            // Core Repository File Mocks for quick administration tracking
+            const systemFiles = [
+                { name: "bills.json", type: "JSON Database File", size: "2.4 KB", url: "./bills.json" },
+                { name: "scraper.py", type: "Python Parsing Module", size: "3.8 KB", url: "https://github.com" },
+                { name: "requirements.txt", type: "System Environment Config", size: "48 Bytes", url: "https://github.com" }
+            ];
 
-            if (slug === 'all') {
-                renderCards(allBills);
-            } else {
-                const filtered = allBills.filter(bill => bill.ministry_slug === slug);
-                renderCards(filtered);
-            }
+            systemFiles.forEach(file => {
+                const fileRow = document.createElement('div');
+                fileRow.className = 'file-row-layout';
+                fileRow.innerHTML = `
+                    <div class="file-info-cluster">
+                        <div class="file-icon">📄</div>
+                        <div class="file-name-meta">
+                            <h4>${file.name}</h4>
+                            <p>${file.type} &bull; ${file.size}</p>
+                        </div>
+                    </div>
+                    <a href="${file.url}" target="_blank" class="action-link" style="font-size:0.85rem;">Fetch File &darr;</a>
+                `;
+                container.appendChild(fileRow);
+            });
         }
 
-        // Live Keyword Text Search
-        document.getElementById('policySearch').addEventListener('input', (e) => {
-            const keyword = e.target.value.toLowerCase();
+        function switchSystemTab(targetTabId) {
+            activeFilterTab = targetTabId;
             
-            // Remove active tags on category buttons while typing text search
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.filter-btn[onclick*="all"]').classList.add('active');
+            // Adjust UI Active Tab states
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${targetTabId}`).classList.add('active');
+            
+            // Clear input while changing spaces
+            document.getElementById('liveFilterField').value = '';
+            
+            executeContentRendering();
+        }
 
-            const filtered = allBills.filter(bill => {
-                return bill.title.toLowerCase().includes(keyword) || 
-                       bill.summary.toLowerCase().includes(keyword) || 
-                       bill.ministry.toLowerCase().includes(keyword) ||
-                       bill.bill_number.toLowerCase().includes(keyword);
+        // Live Real-Time Multi-field input query filtering
+        document.getElementById('liveFilterField').addEventListener('input', (event) => {
+            const queryText = event.target.value.toLowerCase();
+            
+            const matchedSubset = cachedDataset.filter(item => {
+                return item.title.toLowerCase().includes(queryText) || 
+                       item.summary.toLowerCase().includes(queryText) || 
+                       item.ministry.toLowerCase().includes(queryText) || 
+                       item.bill_number.toLowerCase().includes(queryText);
             });
-            renderCards(filtered);
+
+            executeContentRendering(matchedSubset);
         });
 
-        // Initialize Engine
-        document.addEventListener('DOMContentLoaded', loadLiveBills);
+        document.addEventListener('DOMContentLoaded', initializePlatformPipeline);
     </script>
 </body>
 </html>
