@@ -3,425 +3,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayhskal Ruag Policy Research - Dashboard</title>
+    <title>India Public Policy & Legislative Tracker</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8fafc;
-            color: #1e293b;
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #2563eb;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #334155;
+            --text-dark: #0f172a;
+            --meity-color: #0284c7;
+            --dst-color: #7c3aed;
+            --generic-ministry: #475569;
         }
 
-        /* Header Navigation */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
         header {
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 5%;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 1.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-
-        nav a {
-            color: #cbd5e1;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-        }
-
-        /* Hero Banner */
-        .hero {
-            background-color: #0f766e;
-            color: #ffffff;
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .hero h2 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
-        }
-
-        .hero p {
-            margin: 0;
-            color: #ccfbf1;
-            font-size: 1.1rem;
-        }
-
-        /* Visual Data Analytics Section */
-        .analytics-container {
-            max-width: 1200px;
-            margin: 2rem auto 0 auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .analytics-container { grid-template-columns: 1fr; }
-        }
-
-        .chart-card {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .chart-card h3 {
-            margin: 0 0 1rem 0;
-            color: #0f172a;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 0.5rem;
-        }
-
-        .chart-row {
-            margin-bottom: 1rem;
-        }
-
-        .chart-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #475569;
-            margin-bottom: 0.25rem;
-        }
-
-        .bar-bg {
-            background-color: #e2e8f0;
-            height: 12px;
-            border-radius: 6px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .bar-fill {
-            background-color: #0f766e;
-            height: 100%;
-            border-radius: 6px;
-        }
-
-        .bar-fill.accent-one { background-color: #3b82f6; }
-        .bar-fill.accent-two { background-color: #f59e0b; }
-        .bar-fill.accent-three { background-color: #10b981; }
-
-        /* Main Layout Grid */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        /* Sidebar styles */
-        aside {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            height: fit-content;
-        }
-
-        aside h3 {
-            margin-top: 0;
-            color: #0f172a;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 0.75rem;
-            font-size: 1.2rem;
-        }
-
-        .filter-section {
-            margin-bottom: 1.75rem;
-        }
-
-        .filter-section h4 {
-            margin: 0 0 0.75rem 0;
-            color: #475569;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: #334155;
-            cursor: pointer;
-        }
-
-        /* Main Content Area */
-        main {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        main h2 {
-            margin: 0;
-            color: #0f172a;
-            font-size: 1.5rem;
-        }
-
-        /* Search Bar */
-        .search-container {
+            letter-spacing: -0.05em;
             margin-bottom: 0.5rem;
         }
 
-        .search-input {
+        header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
             width: 100%;
-            padding: 0.85rem 1rem;
-            font-size: 1rem;
-            border: 2px solid #e2e8f0;
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
-            background-color: #ffffff;
-            color: #1e293b;
-            box-sizing: border-box;
+            font-size: 0.95rem;
             outline: none;
             transition: border-color 0.2s;
         }
 
-        .search-input:focus {
-            border-color: #0f766e;
+        .search-box input:focus {
+            border-color: var(--secondary-color);
         }
 
-        /* Bill Cards */
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
         .bill-card {
-            background: #ffffff;
-            padding: 1.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .bill-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .bill-card.pending { border-left: 4px solid #f59e0b; }
-        .bill-card.passed { border-left: 4px solid #10b981; }
-        .bill-card.committee { border-left: 4px solid #3b82f6; }
+        .bill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-        .status-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
+        .ministry-tag {
             font-size: 0.75rem;
-            font-weight: bold;
             text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .tag-meity { background-color: var(--meity-color); }
+        .tag-dst { background-color: var(--dst-color); }
+        .tag-generic { background-color: var(--generic-ministry); }
+
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .badge-active { background-color: #e0f2fe; color: #0369a1; }
+        .badge-approved { background-color: #dcfce7; color: #15803d; }
+        .badge-published { background-color: #f0fdf4; color: #166534; }
+        .badge-pending { background-color: #fef3c7; color: #b45309; }
+
+        .bill-title {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
-        .status-tag.pending { background-color: #fef3c7; color: #92400e; }
-        .status-tag.passed { background-color: #d1fae5; color: #065f46; }
-        .status-tag.committee { background-color: #dbeafe; color: #1e40af; }
+        .bill-summary {
+            color: var(--text-main);
+            font-size: 0.98rem;
+            margin-bottom: 1.25rem;
+        }
 
-        .bill-meta {
+        .bill-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
             font-size: 0.85rem;
             color: #64748b;
-            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .brief-link {
+        .view-brief-btn {
             display: inline-block;
             margin-top: 1rem;
-            color: #0f766e;
+            color: var(--secondary-color);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        .brief-link:hover {
+        .view-brief-btn:hover {
             text-decoration: underline;
+        }
+
+        .error-text {
+            text-align: center;
+            padding: 3rem;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #94a3b8;
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: #0f172a;
-            color: #94a3b8;
-            font-size: 0.85rem;
-            margin-top: 4rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-color);
+            background: white;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Ayhskal Ruag Policy Research</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Bills</a>
-            <a href="#">Committee Reports</a>
-            <a href="#">Budgets</a>
-        </nav>
+        <div class="header-container">
+            <h1>India Legislative & Public Policy Tracker</h1>
+            <p>Automated tracking of central ministries, regulatory updates, and gazette notifications</p>
+        </div>
     </header>
 
-    <section class="hero">
-        <h2>Independent Legislative & Policy Analysis</h2>
-        <p>Tracking bills, analyzing budgets, and simplifying institutional data for citizens.</p>
-    </section>
-
-    <!-- Visual Data Analytics Section -->
-    <div class="analytics-container">
-        <div class="chart-card">
-            <h3>Parliamentary Session Productivity</h3>
-            <div class="chart-row">
-                <div class="chart-label"><span>Hours Scheduled</span> <span>100 Hours</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+    <nav>
+        <div class="nav-container">
+            <div class="search-box">
+                <input type="text" id="policySearch" placeholder="Search bills, notifications, or topics...">
             </div>
-            <div class="chart-row">
-                <div class="chart-label"><span>Hours Functioned (Actual)</span> <span>68 Hours (68%)</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 68%;"></div></div>
-            </div>
-            <div class="chart-row">
-                <div class="chart-label"><span>Time Lost to Disruptions</span> <span>32 Hours (32%)</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 32%; background-color: #ef4444;"></div></div>
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterMinistry('all', this)">All Sources</button>
+                <button class="filter-btn" onclick="filterMinistry('meity', this)">Electronics & IT</button>
+                <button class="filter-btn" onclick="filterMinistry('dst', this)">Science & Tech</button>
             </div>
         </div>
+    </nav>
 
-        <div class="chart-card">
-            <h3>Key Sector Budget Allocation (2026)</h3>
-            <div class="chart-row">
-                <div class="chart-label"><span>Defense & Security</span> <span>15% Allocation</span></div>
-                <div class="bar-bg"><div class="bar-fill accent-one" style="width: 75%;"></div></div>
+    <main>
+        <div class="dashboard-grid" id="bills-container">
             </div>
-            <div class="chart-row">
-                <div class="chart-label"><span>Education & Rural Skilling</span> <span>12% Allocation</span></div>
-                <div class="bar-bg"><div class="bar-fill accent-three" style="width: 60%;"></div></div>
-            </div>
-            <div class="chart-row">
-                <div class="chart-label"><span>Digital Infrastructure & IT</span> <span>8% Allocation</span></div>
-                <div class="bar-bg"><div class="bar-fill accent-two" style="width: 40%;"></div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <!-- Left Sidebar Filter Directory -->
-        <aside>
-            <h3>Filter Directory</h3>
-            
-            <div class="filter-section">
-                <h4>Legislative Status</h4>
-                <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="pending"> Introduced / Pending</label>
-                    <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="committee"> Referred to Committee</label>
-                    <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="passed"> Passed into Law</label>
-                </div>
-            </div>
-
-            <div class="filter-section">
-                <h4>Focus Ministry</h4>
-                <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" class="ministry-checkbox" value="finance"> Finance</label>
-                    <label class="checkbox-label"><input type="checkbox" class="ministry-checkbox" value="electronics-it"> Electronics & IT</label>
-                    <label class="checkbox-label"><input type="checkbox" class="ministry-checkbox" value="corporate-affairs"> Corporate Affairs</label>
-                    <label class="checkbox-label"><input type="checkbox" class="ministry-checkbox" value="power"> Power</label>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Right Content Area -->
-        <main>
-            <div class="search-container">
-                <input type="text" id="billSearch" class="search-input" placeholder="Type to search bills by keyword, status, or ministry...">
-            </div>
-
-            <h2>Latest Tracked Legislation</h2>
-            
-            <div class="bill-card pending" data-status="pending" data-ministry="electronics-it">
-                <span class="status-tag pending">Pending</span>
-                <h3>The Digital Personal Data Protection Bill, 2026</h3>
-                <div class="bill-meta">Ministry: Electronics & Information Technology | Introduced: May 2026</div>
-                <p>Establishes a comprehensive legal framework for digital personal data protection processing, balancing individual data privacy rights with necessary lawful processing norms.</p>
-                <a href="brief.html" class="brief-link">Read 3-Page Policy Brief →</a>
-            </div>
-
-            <div class="bill-card passed" data-status="passed" data-ministry="corporate-affairs">
-                <span class="status-tag passed">Passed</span>
-                <h3>The Insolvency and Bankruptcy Code (Amendment) Bill</h3>
-                <div class="bill-meta">Ministry: Corporate Affairs | Passed: March 2026</div>
-                <p>An Act optimizing institutional frameworks to implement faster judicial resolution timelines specifically designed to insulate micro, small, and medium enterprises (MSMEs).</p>
-                <a href="#" class="brief-link">Read 2-Page Policy Brief →</a>
-            </div>
-
-            <div class="bill-card committee" data-status="committee" data-ministry="power">
-                <span class="status-tag committee">Referred to Committee</span>
-                <h3>The Energy Conservation (Amendment) Bill</h3>
-                <div class="bill-meta">Ministry: Power | Under Review Since: April 2026</div>
-                <p>Aims to introduce carbon credit trading architectures and mandate non-fossil fuel energy sources for industrial manufacturing entities to meet international sustainability goals.</p>
-                <a href="#" class="brief-link">Read Standing Committee Report Summary →</a>
-            </div>
-
-        </main>
-    </div>
+    </main>
 
     <footer>
-        <p>© 2026 Ayhskal Ruag Policy Research. Non-partisan, independent research repository.</p>
+        <p>&copy; 2026 Public Policy Archive Dashboard. Connected directly to Cloud Automation Streams.</p>
     </footer>
 
-    <!-- Multi-Filter Interactive JavaScript -->
     <script>
-        const searchInput = document.getElementById('billSearch');
-        const checkboxes = document.querySelectorAll('aside input[type="checkbox"]');
-        const billCards = document.querySelectorAll('.bill-card');
+        let allBills = []; // Cache dataset for filtering and real-time search
 
-        function filterContent() {
-            const searchText = searchInput.value.toLowerCase();
-            const activeStatuses = Array.from(document.querySelectorAll('.status-checkbox:checked')).map(cb => cb.value);
-            const activeMinistries = Array.from(document.querySelectorAll('.ministry-checkbox:checked')).map(cb => cb.value);
+        async function loadLiveBills() {
+            const container = document.getElementById('bills-container');
+            
+            try {
+                // Fetch the pipeline data file updated by your cloud actions
+                const response = await fetch('./bills.json');
+                allBills = await response.json();
+                
+                renderCards(allBills);
+                
+            } catch (error) {
+                console.error("Error loading automated policy stream:", error);
+                container.innerHTML = `
+                    <div class="error-text">
+                        <h3>Temporary Pipeline Synchronization Notice</h3>
+                        <p>The legislative database is performing an automatic refresh or parsing cycle. Please check back in a few moments.</p>
+                    </div>`;
+            }
+        }
 
-            billCards.forEach(card => {
-                const cardText = card.innerText.toLowerCase();
-                const cardStatus = card.getAttribute('data-status');
-                const cardMinistry = card.getAttribute('data-ministry');
-
-                const matchesSearch = cardText.includes(searchText);
-                const matchesStatus = activeStatuses.length === 0 || activeStatuses.includes(cardStatus);
-                const matchesMinistry = activeMinistries.length === 0 || activeMinistries.includes(cardMinistry);
-
-                if (matchesSearch && matchesStatus && matchesMinistry) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
+        function renderCards(dataset) {
+            const container = document.getElementById('bills-container');
+            container.innerHTML = '';
+            
+            if (dataset.length === 0) {
+                container.innerHTML = '<div class="error-text"><p>No items match your active filter criteria.</p></div>';
+                return;
+            }
+            
+            dataset.forEach(bill => {
+                const card = document.createElement('div');
+                card.className = 'bill-card';
+                
+                // Safety guard for ministry formatting
+                const currentSlug = bill.ministry_slug || 'generic';
+                
+                card.innerHTML = `
+                    <div class="bill-header">
+                        <span class="ministry-tag tag-${currentSlug}">${bill.ministry}</span>
+                        <span class="status-badge badge-${bill.status.toLowerCase()}">${bill.status_label}</span>
+                    </div>
+                    <h3 class="bill-title">${bill.title}</h3>
+                    <p class="bill-summary">${bill.summary}</p>
+                    <div class="bill-footer">
+                        <span>📅 Date: ${bill.date}</span>
+                        <span>ID: ${bill.bill_number}</span>
+                    </div>
+                    <a href="brief.html?id=${bill.bill_number}" class="view-brief-btn">View Analysis Brief →</a>
+                `;
+                container.appendChild(card);
             });
         }
 
-        searchInput.addEventListener('keyup', filterContent);
-        checkboxes.forEach(cb => cb.addEventListener('change', filterContent));
-    </script>
+        // Live Filtering Logic
+        function filterMinistry(slug, element) {
+            // Manage UI Button State
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            
+            // Reset search input value when using categories
+            document.getElementById('policySearch').value = '';
 
+            if (slug === 'all') {
+                renderCards(allBills);
+            } else {
+                const filtered = allBills.filter(bill => bill.ministry_slug === slug);
+                renderCards(filtered);
+            }
+        }
+
+        // Live Keyword Text Search
+        document.getElementById('policySearch').addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase();
+            
+            // Remove active tags on category buttons while typing text search
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-btn[onclick*="all"]').classList.add('active');
+
+            const filtered = allBills.filter(bill => {
+                return bill.title.toLowerCase().includes(keyword) || 
+                       bill.summary.toLowerCase().includes(keyword) || 
+                       bill.ministry.toLowerCase().includes(keyword) ||
+                       bill.bill_number.toLowerCase().includes(keyword);
+            });
+            renderCards(filtered);
+        });
+
+        // Initialize Engine
+        document.addEventListener('DOMContentLoaded', loadLiveBills);
+    </script>
 </body>
 </html>
