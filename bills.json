@@ -1,7 +1,22 @@
 [
-  {
-    "bill_number": "001",
-    "title": "Waiting for Robot Launch",
-    "status": "System Online"
-  }
+    {
+        "bill_number": "Bill No. 104",
+        "title": "Digital Infrastructure Development Bill",
+        "status": "passed",
+        "status_label": "Passed into Law",
+        "ministry": "Electronics & IT",
+        "ministry_slug": "meity",
+        "date": "2026-05-21",
+        "summary": "An act to establish secure data centers and expand high-speed fiber connectivity across rural research blocks."
+    },
+    {
+        "bill_number": "Bill No. 105",
+        "title": "National Green Energy Allocation Policy",
+        "status": "pending",
+        "status_label": "Under Review",
+        "ministry": "New & Renewable Energy",
+        "ministry_slug": "mnre",
+        "date": "2026-05-20",
+        "summary": "Proposes a structural subsidy framework for off-grid solar storage systems within agricultural cooperatives."
+    }
 ]
