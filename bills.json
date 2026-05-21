@@ -1,22 +1,22 @@
 [
     {
-        "bill_number": "Bill No. 104",
-        "title": "Digital Infrastructure Development Bill",
-        "status": "passed",
-        "status_label": "Passed into Law",
+        "bill_number": "MeitY-2026-01",
+        "title": "Digital Personal Data Protection (DPDP) Implementation Rules",
+        "status": "Active",
+        "status_label": "Notification Issued",
         "ministry": "Electronics & IT",
         "ministry_slug": "meity",
         "date": "2026-05-21",
-        "summary": "An act to establish secure data centers and expand high-speed fiber connectivity across rural research blocks."
+        "summary": "Rules outlining compliance mandates, consent frameworks, and penalty thresholds for data fiduciaries."
     },
     {
-        "bill_number": "Bill No. 105",
-        "title": "National Green Energy Allocation Policy",
-        "status": "pending",
-        "status_label": "Under Review",
-        "ministry": "New & Renewable Energy",
-        "ministry_slug": "mnre",
-        "date": "2026-05-20",
-        "summary": "Proposes a structural subsidy framework for off-grid solar storage systems within agricultural cooperatives."
+        "bill_number": "Cabinet-2026-14",
+        "title": "National Quantum Mission (NQM) Operational Guidelines",
+        "status": "Approved",
+        "status_label": "Cabinet Clearance",
+        "ministry": "Science & Technology",
+        "ministry_slug": "dst",
+        "date": "2026-05-21",
+        "summary": "Release of structured funding and resource allocation metrics for public-private research hubs across states."
     }
 ]
