@@ -3,181 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legislative Brief - Data Protection Bill, 2026 | Ayhskal Ruag Policy Research</title>
+    <title>Policy Brief Analysis | Ayhskal Ruag Policy Research</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8fafc;
-            color: #1e293b;
+        :root {
+            --brand-primary: #0b1329;
+            --brand-surface: #1c2541;
+            --brand-accent: #3a86ff;
+            --bg-canvas: #f4f7fc;
+            --card-surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Premium Minimal Header */
         header {
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 1rem 2rem;
+            background: var(--brand-primary);
+            color: white;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 3px solid var(--brand-accent);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.4rem;
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
         }
 
-        .back-link {
-            color: #cbd5e1;
+        .back-btn {
+            color: white;
             text-decoration: none;
-            font-size: 0.95rem;
             font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.2s;
         }
 
-        .back-link:hover {
-            color: #ffffff;
+        .back-btn:hover {
+            background: var(--brand-accent);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
         }
 
         .brief-container {
-            max-width: 800px;
-            margin: 3rem auto;
-            background: #ffffff;
+            background: white;
+            border-radius: 16px;
             padding: 3rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
         }
 
-        .brief-header {
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .document-type {
-            color: #0f766e;
-            font-weight: bold;
-            text-transform: uppercase;
+        .meta-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        h2 {
+        .ministry-badge {
+            background: #eff6ff;
+            color: var(--brand-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .id-badge {
+            background: #f1f5f9;
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        h1 {
             font-size: 2.2rem;
-            color: #0f172a;
-            margin: 0.5rem 0;
+            color: var(--brand-primary);
+            font-weight: 800;
             line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
 
-        .meta-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .date-line {
             font-size: 0.9rem;
-            color: #64748b;
-            margin-top: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .summary-box {
-            background-color: #f0fdfa;
-            border-left: 4px solid #0f766e;
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin-bottom: 2.5rem;
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--brand-surface);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
         }
 
-        .summary-box h3 {
-            margin-top: 0;
-            color: #0f766e;
+        p {
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 1.5rem;
         }
 
-        section {
-            margin-bottom: 2.5rem;
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
         }
 
-        section h3 {
-            font-size: 1.4rem;
-            color: #0f172a;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 0.4rem;
-            margin-bottom: 1rem;
+        .alert-box h4 {
+            color: #b45309;
+            margin-bottom: 0.25rem;
+            font-weight: 700;
         }
 
-        .alert-point {
-            background-color: #fff7ed;
-            border-left: 4px solid #ea580c;
-            padding: 1rem 1.25rem;
-            margin: 1rem 0;
-            border-radius: 4px;
+        .alert-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #78350f;
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: #0f172a;
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.85rem;
             margin-top: 6rem;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Ayhskal Ruag Policy Research</h1>
-        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <div class="logo-text">Ayhskal Ruag Research</div>
+        <a href="index.html" class="back-btn">&larr; Return to Dashboard</a>
     </header>
 
-    <div class="brief-container">
-        <article class="brief-header">
-            <span class="document-type">Legislative Brief</span>
-            <h2>The Digital Personal Data Protection Bill, 2026</h2>
-            
-            <div class="meta-grid">
-                <div><strong>Ministry:</strong> Electronics & Information Technology</div>
-                <div><strong>Introduced:</strong> May 12, 2026</div>
-                <div><strong>Current Status:</strong> Pending Debate</div>
-                <div><strong>Analysis Date:</strong> May 20, 2026</div>
-            </div>
-        </article>
-
-        <div class="summary-box">
-            <h3>Executive Summary</h3>
-            <p>The Bill sets standard obligations for data processors (Fiduciaries) to safeguard user privacy, mandates explicit user consent before data processing operations, and outlines financial penalties for non-compliance. However, it grants significant surveillance exemptions to state intelligence instruments.</p>
+    <main>
+        <div class="brief-container" id="brief-content">
+            <p style="color: var(--text-muted); text-align: center;">Loading policy intelligence framework...</p>
         </div>
-
-        <section>
-            <h3>1. Context & Background</h3>
-            <p>With internet penetration expanding exponentially across rural sectors, individual data exposure risks have compounded. This legislation replaces older, fragmented information frameworks to build a comprehensive data compliance structure modeled after global modern privacy standard procedures.</p>
-        </section>
-
-        <section>
-            <h3>2. Core Institutional Features</h3>
-            <ul>
-                <li><strong>Informed Consent:</strong> Clear, granular privacy notices must be delivered to individuals before data retrieval processes begin.</li>
-                <li><strong>The Right to Erasure:</strong> Citizens can legally request companies to completely clear out their recorded information footprints.</li>
-                <li><strong>Localization Mandates:</strong> Critical financial or health data categories must retain a verified processing architecture mirror within geographic sovereign boundaries.</li>
-            </ul>
-        </section>
-
-        <section>
-            <h3>3. Primary Key Issues & Analytical Concerns</h3>
-            <p>While the bill dramatically strengthens standard consumer enterprise protection tiers, independent evaluation units highlight deep functional friction points within structural exemption architectures:</p>
-            
-            <div class="alert-point">
-                <strong>Sovereign State Exemptions:</strong> Section 12 grants government data systems blanket authority to bypass standard citizen consent modules under systemic public order or national security declarations.
-            </div>
-
-            <div class="alert-point">
-                <strong>Board Independence:</strong> The proposed Data Protection Board oversight members are appointed exclusively via executive selection lines, raising structural autonomy questions.
-            </div>
-        </section>
-    </div>
+    </main>
 
     <footer>
-        <p>© 2026 Ayhskal Ruag Policy Research. Non-partisan, independent research repository.</p>
+        &copy; 2026 Ayhskal Ruag Policy Research &bull; Automated Executive Intelligence Engine
     </footer>
 
+    <script>
+        async function loadDynamicBrief() {
+            const container = document.getElementById('brief-content');
+            
+            // 1. Parse URL parameters to see which specific Bill ID the user clicked
+            const urlParameters = new URLSearchParams(window.location.search);
+            const targetBillId = urlParameters.get('id');
+
+            if (!targetBillId) {
+                container.innerHTML = `<h1>Invalid Parameter Access</h1><p>Please launch briefs directly from the tracking dashboard link vectors.</p>`;
+                return;
+            }
+
+            try {
+                // 2. Open up your live automated file pipeline
+                const response = await fetch('./bills.json');
+                const bills = await response.json();
+
+                // 3. Match the item against our data vault
+                const activeRecord = bills.find(b => b.bill_number === targetBillId);
+
+                if (!activeRecord) {
+                    container.innerHTML = `<h1>Data Vector Not Synced</h1><p>The system index has not localized structural properties for token ID: ${targetBillId}.</p>`;
+                    return;
+                }
+
+                // 4. Draw out the state-of-the-art interactive brief page automatically
+                container.innerHTML = `
+                    <div class="meta-header">
+                        <span class="ministry-badge">${activeRecord.ministry}</span>
+                        <span class="id-badge">Track Token: ${activeRecord.bill_number}</span>
+                    </div>
+                    <h1>${activeRecord.title}</h1>
+                    <div class="date-line"><strong>System Logged:</strong> ${activeRecord.date} &bull; <strong>Current Track Status:</strong> ${activeRecord.status_label}</div>
+                    
+                    <div class="section-title">1. Executive Overview & Scope</div>
+                    <p>${activeRecord.summary}</p>
+                    
+                    <div class="section-title">2. Strategic Analysis & Compliance Directive</div>
+                    <p>This entry marks a critical structural adjustment vector within the central department matrix. Entities working adjacent to the <strong>${activeRecord.ministry}</strong> division must immediately synchronize data storage architecture, technical operational guidelines, and legal compliance workflows to line up with these official parameters.</p>
+                    
+                    <div class="alert-box">
+                        <h4>⚠️ Strategic Intelligence Assessment Notice</h4>
+                        <p>Our automation engines have flagged this record under active priority protocols. Stakeholders are advised to monitor subsequent official gazette cycles for granular operational micro-clauses.</p>
+                    </div>
+
+                    <div class="section-title">3. Timeline & Execution Milestones</div>
+                    <p>Following the notification logged on <strong>${activeRecord.date}</strong>, secondary sub-committees will begin auditing public-private execution metrics. The timeline mandates immediate architectural structural alignment to avoid penalty structures outlined under current federal regulatory rule sheets.</p>
+                `;
+
+            } catch (error) {
+                console.error("Brief compiling exception:", error);
+                container.innerHTML = `<h1>Pipeline Synchronization Notice</h1><p>Unable to safely build the analysis brief right now. Please reload shortly.</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadDynamicBrief);
+    </script>
 </body>
 </html>
