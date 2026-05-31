@@ -6,7 +6,7 @@
         "status_label": "Notification Issued",
         "ministry": "Electronics & IT",
         "ministry_slug": "meity",
-        "date": "2026-05-30",
+        "date": "2026-05-31",
         "summary": "Rules outlining compliance mandates, consent frameworks, and penalty thresholds for data fiduciaries."
     },
     {
@@ -16,7 +16,7 @@
         "status_label": "Cabinet Clearance",
         "ministry": "Science & Technology",
         "ministry_slug": "dst",
-        "date": "2026-05-30",
+        "date": "2026-05-31",
         "summary": "Release of structured funding and resource allocation metrics for public-private research hubs across states."
     }
 ]
